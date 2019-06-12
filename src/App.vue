@@ -20,5 +20,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin: 60px;
+    display: flex;
+    flex-grow: 0;
   }
 </style>

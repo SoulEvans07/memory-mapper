@@ -53,7 +53,11 @@
     display: inline-flex;
     flex-direction: row;
     flex-grow: 0;
-    padding: 4px;
+    padding: 4px 0;
+  }
+
+  .slice:not(:first-of-type) {
+    padding: 0 0 4px; 
   }
 
   .btn {

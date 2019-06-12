@@ -48,8 +48,12 @@
         });
         bits.forEach((bit, index) => {
           slices.forEach(slice => {
-            if(bit.state > 1 && slice.bits[index].state > 0){
-              slice.bits[index].state = 2;
+            if(slice.bits[index].state > 0) {
+              if(bit.state > 1){
+                slice.bits[index].state = 2;
+              } else {
+                slice.bits[index].state = 1;
+              }
             }
           })
         });
@@ -59,6 +63,7 @@
       },
       removeSlice(slice){
         this.instance.slices.splice(this.instance.slices.indexOf(slice),1);
+        this.checkStatus();
       }
     }
   }
@@ -66,9 +71,11 @@
 
 <style scoped>
   .editor {
-    display: block;
-    background: #f5f5f5;
+    background: #aaa;
     padding: 10px;
+    display: flex;
+    flex-grow: 0;
+    flex-direction: column;
   }
 
   .status {
@@ -76,7 +83,8 @@
     display: inline-flex;
     flex-direction: row;
     flex-grow: 0;
-    padding: 4px;
+    padding: 4px 0;
+    margin-bottom: 5px;
   }
 
   .slices {
