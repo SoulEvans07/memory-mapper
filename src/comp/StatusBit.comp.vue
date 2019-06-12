@@ -21,10 +21,15 @@
         this.$emit('bit-clicked', this.bit);
       },
       updateClass () {
-        if (this.bit.state == 1) {
-          this.$refs.bit.classList = "status-bit selected";
-        } else {
-          this.$refs.bit.classList = "status-bit error";
+        switch(this.bit.state) {
+          case 0: 
+            this.$refs.bit.classList = "status-bit warning";
+            break;
+          case 1: 
+            this.$refs.bit.classList = "status-bit selected";
+            break;
+          default:
+            this.$refs.bit.classList = "status-bit error";
         }
       }
     }
@@ -41,7 +46,12 @@
   .status-bit.selected {
     background: #888;
   }
+
   .status-bit.error {
-    background: #e40000;
+    background: #ff5858;
+  }
+
+  .status-bit.warning {
+    background: #ffab5b;
   }
 </style>

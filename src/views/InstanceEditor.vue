@@ -18,7 +18,7 @@
         v-on:click="addSlice(addCount)" />
       <input class="number-box" type="number"
         v-model="addCount" 
-        min="1" 
+        min="0" 
         v-bind:max="this.instance.size - this.instance.slices.length"
         v-on:keypress.enter="addSlice(addCount)" />
     </div>

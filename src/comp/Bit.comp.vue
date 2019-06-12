@@ -51,10 +51,10 @@
   }
 
   .bit.error {
-    background: #e40000;
+    background: #ff5858;
   }
 
   .error:hover {
-    background: #f00
+    background: #ff4747;
   }
 </style>
