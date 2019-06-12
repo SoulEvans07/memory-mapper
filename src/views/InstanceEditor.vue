@@ -18,8 +18,9 @@
         v-on:click="addSlice(addCount)" />
       <input class="number-box" type="number"
         v-model="addCount" 
-        min="0" 
+        min="1"
         v-bind:max="this.instance.size - this.instance.slices.length"
+        v-on:blur="updateCount"
         v-on:keypress.enter="addSlice(addCount)" />
     </div>
   </div>
@@ -77,6 +78,13 @@
       removeSlice(slice){
         this.instance.slices.splice(this.instance.slices.indexOf(slice),1);
         this.checkStatus();
+      },
+      updateCount() {
+        if(this.addCount > this.instance.size - this.instance.slices.length) {
+          this.addCount = this.instance.size - this.instance.slices.length;
+        } else if(this.addCount < 1) {
+          this.addCount = 1;
+        }
       }
     }
   }
