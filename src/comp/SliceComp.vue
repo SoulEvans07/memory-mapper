@@ -29,6 +29,14 @@
             setRange(this.slice.bits, right+1, index, true);
           } else if(index < left) {
             setRange(this.slice.bits, index, left-1, true);
+          } else {
+            let leftDiff = index - left;
+            let rightDiff = right - index;
+            if(leftDiff >= rightDiff) {
+              setRange(this.slice.bits, index, right, false);
+            } else {
+              setRange(this.slice.bits, left, index, false);
+            }
           }
         }
       },
@@ -39,6 +47,7 @@
   }
 
   function setRange(list, start, end, sel){
+    console.log(range(start, end));
     range(start, end).forEach(index => list[index].selected = sel);
   }
 
