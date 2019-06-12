@@ -49,7 +49,6 @@
 
 <style scoped>
   .slice {
-    background: #aaa;
     display: inline-flex;
     flex-direction: row;
     flex-grow: 0;

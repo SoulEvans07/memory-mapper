@@ -1,9 +1,10 @@
 <template>
   <div class='editor'>
     <div class='status'>
-      <bit v-for='(bit,i) in this.instance.bits'
+      <status-bit v-for='(bit,i) in this.instance.bits'
         v-bind:key='i'
         v-bind:bit='bit'/>
+      <div class="placeholder-box"/>
     </div>
     <div class="slices">
       <slice v-for="(slice, i) in this.instance.slices"
@@ -14,7 +15,12 @@
     </div>
     <div class="controls">
       <input class="btn" type="button" value="+"
-        v-on:click="addSlice">
+        v-on:click="addSlice(addCount)" />
+      <input class="number-box" type="number"
+        v-model="addCount" 
+        min="1" 
+        v-bind:max="this.instance.size - this.instance.slices.length"
+        v-on:keypress.enter="addSlice(addCount)" />
     </div>
   </div>
 </template>
@@ -23,13 +29,18 @@
   import Instance from '../models/instance'
   import Slice from '../models/slice'
   import bit from '../comp/Bit.comp'
+  import statusbit from '../comp/StatusBit.comp'
   import slice from '../comp/Slice.comp'
 
   export default {
-    components: { slice, bit },
+    components: { 
+      slice, bit,
+      'status-bit': statusbit
+    },
     data () {
       return {
-        instance: new Instance(16)
+        instance: new Instance(16),
+        addCount: 1
       }
     },
     mounted() {
@@ -58,8 +69,10 @@
           })
         });
       },
-      addSlice() {
-        this.instance.slices.push(new Slice(this.instance.size));
+      addSlice(count = 1) {
+        for(let i = 0; i < count; i++)
+          this.instance.slices.push(new Slice(this.instance.size));
+        this.addCount = 1;
       },
       removeSlice(slice){
         this.instance.slices.splice(this.instance.slices.indexOf(slice),1);
@@ -78,8 +91,13 @@
     flex-direction: column;
   }
 
-  .status {
-    background: #aaa;
+  .placeholder-box {
+    margin-left: 10px;
+    width: 32px;
+    height: 16px;
+  }
+
+  .status {    
     display: inline-flex;
     flex-direction: row;
     flex-grow: 0;
@@ -88,21 +106,36 @@
   }
 
   .slices {
-    background: #aaa;
     display: inline-flex;
     flex-direction: column;
     flex-grow: 0;
   }
 
   .controls {
-    margin-top: 20px;
+    margin-top: 10px;
+    display: inline-flex;
+  }
+
+  .number-box {
+    margin-left: 10px;
+    background: #eee;
+    border: none;
+    outline: none;
+    width: 32px;
+    max-height: 32px;
+    text-align: center;
+  }
+
+  .number-box::-webkit-inner-spin-button, 
+  .number-box::-webkit-outer-spin-button { 
+    appearance: none;
   }
 
   .btn {
     background: #ccc;
     border: none;
     outline: none;
-    width: 32px;
+    width: 100%;
     height: 32px;
   }
 
