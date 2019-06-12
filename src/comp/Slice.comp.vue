@@ -1,5 +1,6 @@
 <template>
-  <div class='slice'>
+  <div class='slice'
+    ghost-class="ghost">
     <bit v-for='(bit,i) in this.slice.bits'
       v-bind:key='i'
       v-bind:bit='bit'
@@ -10,11 +11,12 @@
 </template>
 
 <script>
+  import draggable from "vuedraggable"
   import bit from './Bit.comp'
 
   export default {
     name: 'slice',
-    components: { bit },
+    components: { bit, draggable },
     props: [ 'slice' ],
     methods: {
       bitClicked(bit) {
@@ -48,11 +50,16 @@
 </script>
 
 <style scoped>
+  .ghost {
+    opacity: 0.5;
+  }
+
   .slice {
     display: inline-flex;
     flex-direction: row;
     flex-grow: 0;
     padding: 4px 0;
+    cursor: pointer;
   }
 
   .slice:not(:first-of-type) {
