@@ -1,18 +1,24 @@
 <template>
-  <div class='slice'
-    ghost-class="ghost">
+  <draggable class='slice'
+    ghost-class="ghost"
+    draggable=".bit"
+    handle=".selected,.error"
+    multiDrag="true"
+    selectedClass="sel">
     <bit v-for='(bit,i) in this.slice.bits'
       v-bind:key='i'
       v-bind:bit='bit'
       v-on:bit-clicked='bitClicked'/>
     <input class="btn" type="button" value="-"
         v-on:click="removeSlice">
-  </div>
+  </draggable>
 </template>
 
 <script>
-  import draggable from "vuedraggable"
+  import draggable from 'vuedraggable'
   import bit from './Bit.comp'
+
+
 
   export default {
     name: 'slice',

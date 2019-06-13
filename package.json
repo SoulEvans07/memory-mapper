@@ -1,5 +1,5 @@
 {
-  "name": "slice",
+  "name": "memory-mapper",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,7 +10,8 @@
   "dependencies": {
     "core-js": "^2.6.5",
     "vue": "^2.6.10",
-    "vuedraggable": "^2.21.0"
+    "vuedraggable": "^2.21.0",
+    "sortablejs": "1.10.0-rc2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",

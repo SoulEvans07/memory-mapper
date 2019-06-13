@@ -6,14 +6,13 @@
         v-bind:bit='bit'/>
       <div class="placeholder-box"/>
     </div>
-    <draggable class="slices"
-      ghost-class="ghost">
+    <div class="slices">
       <slice v-for="(slice, i) in this.instance.slices"
         v-bind:key="i"
         v-bind:slice="slice"
         v-on:slice-removed="removeSlice"
         v-on:slice-changed="checkStatus" />
-    </draggable>
+    </div>
     <div class="controls">
       <input class="btn" type="button" value="+"
         v-on:click="addSlice(addCount)" />
@@ -28,7 +27,6 @@
 </template>
 
 <script>
-  import draggable from "vuedraggable"
   import Instance from '../models/instance'
   import Slice from '../models/slice'
   import statusbit from '../comp/StatusBit.comp'
@@ -36,7 +34,7 @@
 
   export default {
     components: { 
-      slice, draggable,
+      slice,
       'status-bit': statusbit
     },
     data () {
