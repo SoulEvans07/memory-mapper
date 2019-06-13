@@ -47,14 +47,14 @@
   }
 
   .selected:hover {
-    background: #777
+    background: #777;
   }
 
   .bit.error {
-    background: #ff5858;
+    background: #f99;
   }
 
   .error:hover {
-    background: #ff4747;
+    background: #ff6666;
   }
 </style>

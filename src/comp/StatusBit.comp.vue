@@ -44,14 +44,14 @@
   }
 
   .status-bit.selected {
-    background: #888;
+    background: #ccffcc;
   }
 
   .status-bit.error {
-    background: #ff5858;
+    background: #f99;
   }
 
   .status-bit.warning {
-    background: #ffab5b;
+    background: #ff9;
   }
 </style>
